@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import logo from "../../public/images/horizontal-logo.png";
+import { ModeToggle } from "./theme-toggle";
 
 export default function TopNav() {
   const { isSignedIn, user } = useUser();
@@ -23,12 +24,15 @@ export default function TopNav() {
         {isSignedIn && (
           <Link href="/dashboard">{`${user.fullName}'s Dashboard`}</Link>
         )}
+
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
           <UserButton />
         </SignedIn>
+
+        <ModeToggle />
       </div>
     </nav>
   );

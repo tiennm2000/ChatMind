@@ -43,8 +43,8 @@ export default function SideNav() {
           key={index}
           className={clsx(
             "flex gap-2 p-2 mb-2 rounded-lg cursor-pointer justify-center  items-center md:justify-start ",
-            path === item.path && "text-white bg-primary",
-            path !== item.path && "hover:text-white hover:bg-primary"
+            path === item.path && "text-secondary bg-primary",
+            path !== item.path && "hover:text-secondary hover:bg-primary"
           )}
         >
           <item.icon />
