@@ -1,5 +1,5 @@
 "use client";
-import { runAi } from "@/app/actions/ai";
+import { runAi } from "@/actions/ai";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
