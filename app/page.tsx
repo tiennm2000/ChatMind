@@ -1,9 +1,8 @@
 "use client";
 import { runAi } from "@/actions/ai";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import Markdown from "react-markdown";
 
 export default function Page() {
@@ -26,23 +25,28 @@ export default function Page() {
   };
 
   return (
-    <>
-      <form onSubmit={handleClick}>
-        <Input
-          className="mb-4"
-          placeholder="Write question here!"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <Button>Generate Answer</Button>
+    <div className="m-5">
+      <form onSubmit={handleClick} className="flex">
+        <div className="flex-1 mr-1">
+          <Input
+            className="mb-4"
+            placeholder="Write question here!"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        {/* <Button>Generate Answer</Button> */}
       </form>
-
-      <Card className="mt-3">
-        <CardHeader>AI response</CardHeader>
-        <CardContent>
-          {loading ? "Loading..." : <Markdown>{response}</Markdown>}
-        </CardContent>
-      </Card>
-    </>
+      {loading && <p>Loading...</p>}
+      {response && (
+        <Card className="mt-5 bg-slate-200 dark:bg-slate-800">
+          <CardContent>
+            <Markdown className="mt-5 p-4 leading-8 text-gray-500 dark:text-gray-400">
+              {response}
+            </Markdown>
+          </CardContent>
+        </Card>
+      )}
+    </div>
   );
 }
