@@ -5,6 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import logo from "../../public/images/horizontal-logo.png";
 import { ModeToggle } from "./theme-toggle";
+import { Button } from "../ui/button";
 
 export default function TopNav() {
   const { isSignedIn, user } = useUser();
@@ -22,11 +23,15 @@ export default function TopNav() {
       </Link>
       <div className="flex items-center gap-2">
         {isSignedIn && (
-          <Link href="/dashboard">{`${user.fullName}'s Dashboard`}</Link>
+          <Link href="/dashboard">
+            <Button className="bg-blue-700 dark:bg-blue-100">{`${user.fullName}'s Dashboard`}</Button>
+          </Link>
         )}
 
         <SignedOut>
-          <SignInButton />
+          <Button>
+            <SignInButton />
+          </Button>
         </SignedOut>
         <SignedIn>
           <UserButton />
