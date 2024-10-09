@@ -27,7 +27,7 @@ export async function runAi(text: string) {
   return result.response.text();
 }
 
-export async function SaveQuery(
+export async function saveQuery(
   template: object,
   email: string,
   query: string,
@@ -45,6 +45,31 @@ export async function SaveQuery(
     };
   } catch (e) {
     console.log(e);
+    return {
+      ok: false,
+    };
+  }
+}
+
+export async function getQueries(
+  email: string,
+  page: number,
+  pageSize: number
+) {
+  try {
+    await dbConnect();
+    const skip = (page - 1) * pageSize;
+    const totalQueries = await Query.countDocuments({ email });
+    const queries = await Query.find({ email })
+      .skip(skip)
+      .limit(pageSize)
+      .sort({ createAt: -1 });
+
+    return {
+      queries,
+      totalPages: Math.ceil(totalQueries / pageSize),
+    };
+  } catch {
     return {
       ok: false,
     };
