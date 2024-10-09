@@ -7,28 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useRef, useState } from "react";
-import { runAi, SaveQuery } from "@/actions/ai";
+import { runAi, saveQuery } from "@/actions/ai";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import toast, { Toaster } from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
-
-export interface Topic {
-  name: string;
-  slug: string;
-  desc: string;
-  category: string;
-  icon: string;
-  aiPrompt: string;
-  form: Form[];
-}
-
-export interface Form {
-  label: string;
-  name: string;
-  field: string;
-  required: boolean;
-}
+import { Topic } from "@/lib/types";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const topic = topics.find((item) => item.slug === params.slug) as Topic;
@@ -54,7 +38,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     try {
       const data = await runAi(topic.aiPrompt + query);
       // save to db (userEmail, query, content, templateSlug)
-      await SaveQuery(topic, email, query, data);
+      await saveQuery(topic, email, query, data);
 
       setContent(data);
     } catch (error) {
