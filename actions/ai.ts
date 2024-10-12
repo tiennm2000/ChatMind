@@ -88,15 +88,15 @@ export async function usageCount(email: string) {
         email: email,
         $expr: {
           $and: [
-            { $eq: [{ $year: "$createAt" }, currentYear] },
-            { $eq: [{ $month: "$createAt" }, currentMonth] },
+            { $eq: [{ $year: "$createdAt" }, currentYear] },
+            { $eq: [{ $month: "$createdAt" }, currentMonth] },
           ],
         },
       },
     },
     {
       $project: {
-        $wordCount: {
+        wordCount: {
           $size: {
             $split: [{ $trim: { input: "$content" } }, " "],
           },
@@ -106,9 +106,9 @@ export async function usageCount(email: string) {
     {
       $group: {
         _id: null,
-        totalWord: { $sum: "$wordCount" },
+        totalWords: { $sum: "$wordCount" },
       },
     },
   ]);
-  return result.length > 0 ? result[0].totalWord : 0;
+  return result.length > 0 ? result[0].totalWords : 0;
 }

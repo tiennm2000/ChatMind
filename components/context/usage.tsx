@@ -23,7 +23,7 @@ export const UsageProvider = ({
 
   const fetchUsage = async () => {
     const res = await usageCount(email);
-    setCount(res.data.count);
+    setCount(res);
   };
 
   return (
