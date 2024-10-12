@@ -37,7 +37,7 @@ export default function SideNav() {
   const path = usePathname();
 
   return (
-    <div className="h-dvh p-5 shadow-sm border flex flex-col">
+    <div className="h-full p-5 shadow-sm border flex flex-col">
       <div className="flex-1 space-y-2">
         {menu.map((item, index) => (
           <Link

@@ -4,11 +4,11 @@ export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="grid grid-cols-4 gap-2">
-      <div className="col-span-1">
+    <div className="flex h-screen">
+      <div className="h-full w-1/4 ">
         <SideNav />
       </div>
-      <div className="col-span-3">{children}</div>
+      <div className="flex-1 overflow-y-auto">{children}</div>
     </div>
   );
 }

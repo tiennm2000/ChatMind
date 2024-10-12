@@ -5,6 +5,7 @@ import { useUser } from "@clerk/nextjs";
 
 interface UsageContextType {
   count: number;
+  fetchUsage: () => void;
 }
 const UsageContext = createContext<UsageContextType | null>(null);
 
@@ -27,7 +28,9 @@ export const UsageProvider = ({
   };
 
   return (
-    <UsageContext.Provider value={{ count }}>{children}</UsageContext.Provider>
+    <UsageContext.Provider value={{ count, fetchUsage }}>
+      {children}
+    </UsageContext.Provider>
   );
 };
 

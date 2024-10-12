@@ -13,6 +13,7 @@ import { Editor } from "@toast-ui/react-editor";
 import toast, { Toaster } from "react-hot-toast";
 import { useUser } from "@clerk/nextjs";
 import { Topic } from "@/lib/types";
+import { useUsage } from "@/components/context/usage";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const topic = topics.find((item) => item.slug === params.slug) as Topic;
@@ -23,6 +24,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const editorRef = useRef<Editor>(null);
 
   const { user } = useUser();
+  const { fetchUsage } = useUsage();
   const email = user?.primaryEmailAddress?.emailAddress || "";
 
   useEffect(() => {
@@ -41,6 +43,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       await saveQuery(topic, email, query, data);
 
       setContent(data);
+      fetchUsage();
     } catch (error) {
       setContent("An error ocurred. Please try again" + error);
     } finally {
