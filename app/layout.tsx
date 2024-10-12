@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import TopNav from "@/components/nav/top-nav";
 import { ThemeProvider } from "@/components/context/theme";
+import { UsageProvider } from "@/components/context/usage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +28,11 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <TopNav />
+            <UsageProvider>
+              <TopNav />
 
-            <main>{children}</main>
+              <main>{children}</main>
+            </UsageProvider>
           </ThemeProvider>
         </body>
       </html>
