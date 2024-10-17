@@ -50,7 +50,7 @@ export default function SideNav() {
             )}
           >
             <item.icon className="w-6 h-6" />
-            <span className="hidden md:inline">{item.name}</span>
+            <span className=" md:inline">{item.name}</span>
           </Link>
         ))}
       </div>
