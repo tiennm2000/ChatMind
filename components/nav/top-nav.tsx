@@ -21,6 +21,7 @@ export default function TopNav() {
           objectFit="cover"
         ></Image>
       </Link>
+      <Link href="/membership">🔥 Join free or $9.99/month</Link>
       <div className="flex items-center gap-2">
         {isSignedIn && (
           <Link href="/dashboard">

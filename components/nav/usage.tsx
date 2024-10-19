@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useUsage } from "../context/usage";
 import { Button } from "../ui/button";
 
@@ -25,9 +26,11 @@ export default function Usage() {
         </h2>
       </div>
 
-      <Button className="w-full my-3 " variant="secondary">
-        Upgrade
-      </Button>
+      <Link href="/membership">
+        <Button className="w-full my-3 " variant="secondary">
+          Upgrade
+        </Button>
+      </Link>
     </div>
   );
 }

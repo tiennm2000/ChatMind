@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Usage from "./usage";
+import SignUpModal from "../modal/sign-up-modal";
 
 export default function SideNav() {
   const menu = [
@@ -57,6 +58,7 @@ export default function SideNav() {
 
       <div className="pb-20 mt-auto">
         <Usage />
+        <SignUpModal />
       </div>
     </div>
   );
