@@ -1,8 +1,12 @@
 "use client";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { SignInButton, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { createCheckoutSession } from "@/actions/stripe";
+import { useState } from "react";
+import { Divide, Loader2Icon } from "lucide-react";
 
 export default function PlanCard({
   name,
@@ -11,11 +15,41 @@ export default function PlanCard({
   name: string;
   image: string;
 }) {
+  //state
+  const [loading, setLoading] = useState(false);
+  //hook
   const { isSignedIn, isLoaded } = useUser();
-  const handleCheckout = async () => {};
+  const router = useRouter();
+
+  const handleCheckout = async () => {
+    if (name === "Free") {
+      router.push("/dashboard");
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await createCheckoutSession();
+
+      const { url, error } = response;
+
+      if (error) {
+        toast.error(error);
+        return;
+      }
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (err: any) {
+      console.log("Error creating Stripe Checkout session:", err);
+      toast.error("An unexpected error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 border">
+      <Toaster />
       <Image
         width={100}
         height={100}
@@ -40,7 +74,11 @@ export default function PlanCard({
           <li>🛠 {name === "Free" ? "" : "Priority"} Customer support</li>
         </ul>
       </div>
-      {!isLoaded ? (
+      {loading ? (
+        <Button disabled={loading} className="px-5 pb-10">
+          <Loader2Icon className="animate-spin mr-2" /> Processing
+        </Button>
+      ) : !isLoaded ? (
         ""
       ) : !isSignedIn ? (
         <div className="px-5 pb-10">

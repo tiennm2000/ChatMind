@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: "*flaticon.com",
         port: "",
       },
+      { hostname: "files.stripe.com" },
     ],
   },
 };
