@@ -24,7 +24,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const editorRef = useRef<Editor>(null);
 
   const { user } = useUser();
-  const { fetchUsage } = useUsage();
+  const { fetchUsage, subscribed, count } = useUsage();
   const email = user?.primaryEmailAddress?.emailAddress || "";
 
   useEffect(() => {
@@ -61,6 +61,9 @@ export default function Page({ params }: { params: { slug: string } }) {
       console.error("Fail to copy " + err);
     }
   };
+
+  console.log(count);
+  console.log(subscribed);
 
   return (
     <div>
@@ -108,12 +111,20 @@ export default function Page({ params }: { params: { slug: string } }) {
               </div>
             ))}
 
-            <Button type="submit" className="w-full py-6" disabled={loading}>
-              {loading ? (
-                <Loader2Icon className="animate-spin mr-2" />
-              ) : (
-                "Generate content"
-              )}
+            <Button
+              type="submit"
+              className="w-full py-6"
+              disabled={
+                loading ||
+                (!subscribed &&
+                  count >= Number(process.env.NEXT_PUBLIC_FREE_TIER_USAGE))
+              }
+            >
+              {loading && <Loader2Icon className="animate-spin mr-2" />}
+              {subscribed ||
+              count <= Number(process.env.NEXT_PUBLIC_FREE_TIER_USAGE)
+                ? "Generate content"
+                : "Subscribe to generate content"}
             </Button>
           </form>
         </div>

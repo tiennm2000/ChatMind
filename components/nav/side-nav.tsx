@@ -26,7 +26,7 @@ export default function SideNav() {
     {
       name: "Billing",
       icon: WalletCards,
-      path: "/dashboard/Billing",
+      path: "/dashboard/billing",
     },
     {
       name: "Settings",

@@ -6,9 +6,11 @@ import Image from "next/image";
 import logo from "../../public/images/horizontal-logo.png";
 import { ModeToggle } from "./theme-toggle";
 import { Button } from "../ui/button";
+import { useUsage } from "../context/usage";
 
 export default function TopNav() {
   const { isSignedIn, user } = useUser();
+  const { subscribed } = useUsage();
 
   return (
     <nav className="flex justify-between items-center p-2 shadow">
@@ -21,7 +23,10 @@ export default function TopNav() {
           objectFit="cover"
         ></Image>
       </Link>
-      <Link href="/membership">🔥 Join free or $9.99/month</Link>
+      <Link href="/gen-ai">Gen AI</Link>
+      {!subscribed && (
+        <Link href="/membership">🔥 Join free or $9.99/month</Link>
+      )}
       <div className="flex items-center gap-2">
         {isSignedIn && (
           <Link href="/dashboard">
