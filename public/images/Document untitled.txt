@@ -1,0 +1,69 @@
+---------------------------
+Tien Nguyen Minh
+---------------------------
+Occupation: Software Developer 
+Nationality: Viet Nam 
+Date of birth: 2000-06-02 
+Address: Team 16, Dong Duyen Village, To Hieu Commune, Thuong Tin District, Hanoi City 
+Phone: 0962752465 
+Email: tiennguyen02062000@gmail.com 
+Social links, website: https://github.com/tiennm2000 
+
+        
+//  Objective //
+        
+Aspiring software developer with a passion for building scalable web applications. Seeking to leverage strong programming skills in a dynamic team environment to contribute to innovative software solutions
+
+
+            
+//  Education //
+        
+_ Bachelor's Degree in Automotive Engineering _
+University of Transport and Communications
+3 Cau Giay Street, Lang Thuong Ward, Dong Da District, Hanoi, 2018 - 2024
+
+            
+//  Skills //
+        
+• Html
+            
+• Css
+            
+• Javascript/Typescript
+            
+• Reactjs/Nextjs
+            
+• Mongodb
+            
+• Tailwindcss
+            
+//  Languages //
+        
+• English, intermediate 
+            
+//  Projects //
+        
+Project Title: ChatMind
+Duration: September 24, 2024  October 28, 2024
+Role: Sole Developer
+
+Description:
+Developed ChatMind, an AI-powered chat application, using a modern tech stack that includes Next.js, React.js, Tailwind CSS, MongoDB, ClearK, Stripe, and Google Gemini API. The application features an intuitive user interface that allows users to engage in dynamic conversations with AI. Implemented secure payment processing with Stripe and optimized user experience through responsive design.
+
+Key Responsibilities:
+
+Designed and developed the frontend using Next.js and React.js.
+Styled the application with Tailwind CSS for a sleek and responsive layout.
+Integrated MongoDB for efficient data storage and retrieval.
+Utilized Google Gemini API to enhance the AI conversational capabilities.
+Implemented payment functionality with Stripe for user subscriptions.
+Deployed the application to provide accessible and real-time chat experiences.
+Technologies Used:
+Next.js, React.js, Tailwind CSS, MongoDB, ClearK, Stripe, Google Gemini API
+
+Links:
+
+GitHub: https://github.com/tiennm2000/ChatMind
+Deployment: https://chatmind-nu.vercel.app/
+
+            
